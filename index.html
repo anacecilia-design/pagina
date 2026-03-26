@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+  <!DOCTYPE html>
 <html>
 <head>
   <title>Mi pagina</title>
@@ -81,14 +83,18 @@
     const searchInput = document.getElementById('searchInput');
     const cards = document.querySelectorAll('#menuContainer .card');
 
+    function normalizeText(text) {
+      return text.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
     searchInput.addEventListener('keyup', () => {
-      const query = searchInput.value.toLowerCase().trim(); // minusculas y sin espacios al inicio/final
+      const query = normalizeText(searchInput.value);
 
       cards.forEach(card => {
-        const name = card.getAttribute('data-name').toLowerCase();
+        const name = normalizeText(card.getAttribute('data-name'));
 
-        // Mostrar la card solo si coincide exactamente
-        if(name === query || query === '') {
+        // Mostrar si incluye la búsqueda
+        if(name.includes(query) || query === '') {
           card.style.display = 'block';
         } else {
           card.style.display = 'none';
