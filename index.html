@@ -1,25 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pagina</title>
+  <title>Mi pagina</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: lightblue;
+    }
+
+    h1 {
+      text-align: center;
+      color: navy;
+      font-style: italic;
+      font-size: 60px;
+      margin: 20px;
+    }
+  </style>
 </head>
 
-<body style="background-color: lightblue;">
+<body>
 
-  <h1 style="text-align: center; color: navy; font-style: italic; font-size: 60px;">
-    MENU
-  </h1>
-  <h2>Entradas</h2>
-<ul>
-  <li>Empanadas</li>
-  <li>Papas fritas</li>
-</ul>
+  <h1>MENU</h1>
 
-<h2>Platos principales</h2>
-<ul>
-  <li>Hamburguesa</li>
-  <li>Pizza</li>
-</ul>
+  <div class="container">
+
+    <!-- SECCION HAMBURGUESA -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3 class="card-title">🍔 Hamburguesa</h3>
+        <p class="card-text">Carne, queso, lechuga y tomate</p>
+        <p><strong>$2500</strong></p>
+      </div>
+    </div>
+
+    <!-- SECCION PIZZA -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3 class="card-title">🍕 Pizza</h3>
+        <p class="card-text">Muzzarella con salsa de tomate</p>
+        <p><strong>$4000</strong></p>
+      </div>
+    </div>
+
+    <!-- SECCION PAPAS -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3 class="card-title">🍟 Papas fritas</h3>
+        <p class="card-text">Papas crocantes con sal</p>
+        <p><strong>$1500</strong></p>
+      </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h3>📍 Contacto</h3>
+        <p>Dirección: AV. ARGENTINA 154</p>
+        <p>Teléfono: 15543768</p>
+        <p>Horario: 12:00 - 23:00</p>
+      </div>
+    </div>
+
+  </div>
 
 </body>
 </html>
