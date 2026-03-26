@@ -1,6 +1,6 @@
 
 
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
   <title>Mi pagina</title>
@@ -22,11 +22,20 @@
 
     .search-bar {
       max-width: 500px;
-      margin: 30px auto; /* espacio entre barra y título */
+      margin: 30px auto;
     }
 
     .card {
-      margin-bottom: 20px; /* espacio entre comidas */
+      margin-bottom: 20px;
+      cursor: pointer; /* indica que se puede hacer clic */
+    }
+
+    .food-image {
+      width: 100%;
+      max-width: 400px;
+      display: none; /* empieza oculta */
+      margin: 10px auto;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -42,7 +51,7 @@
 
   <div class="container" id="menuContainer">
 
-    <div class="card" data-name="hamburguesa">
+    <div class="card" data-name="hamburguesa" data-img="hamburguesa.jpg">
       <div class="card-body">
         <h3>🍔 Hamburguesa</h3>
         <p>Carne, queso, lechuga y tomate</p>
@@ -50,7 +59,7 @@
       </div>
     </div>
 
-    <div class="card" data-name="pizza">
+    <div class="card" data-name="pizza" data-img="pizza.jpg">
       <div class="card-body">
         <h3>🍕 Pizza</h3>
         <p>Muzzarella con salsa de tomate</p>
@@ -58,7 +67,7 @@
       </div>
     </div>
 
-    <div class="card" data-name="papas fritas">
+    <div class="card" data-name="papas fritas" data-img="papas.jpg">
       <div class="card-body">
         <h3>🍟 Papas fritas</h3>
         <p>Papas crocantes con sal</p>
@@ -66,7 +75,7 @@
       </div>
     </div>
 
-    <!-- CONTACTO -->
+    <!-- CONTACTO (sin imagen) -->
     <div class="card mt-4" data-name="contacto">
       <div class="card-body">
         <h3>📍 Contacto</h3>
@@ -76,28 +85,39 @@
       </div>
     </div>
 
+    <!-- IMG DISPLAY -->
+    <img id="foodImage" class="food-image" src="" alt="Imagen de comida">
+
   </div>
 
-  <!-- SCRIPT DE FILTRADO MEJORADO -->
+  <!-- SCRIPT -->
   <script>
     const searchInput = document.getElementById('searchInput');
     const cards = document.querySelectorAll('#menuContainer .card');
+    const foodImage = document.getElementById('foodImage');
 
     function normalizeText(text) {
       return text.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
 
+    // FILTRADO
     searchInput.addEventListener('keyup', () => {
       const query = normalizeText(searchInput.value);
-
       cards.forEach(card => {
         const name = normalizeText(card.getAttribute('data-name'));
+        card.style.display = name.includes(query) || query === '' ? 'block' : 'none';
+      });
+      foodImage.style.display = 'none'; // ocultar imagen si buscas
+    });
 
-        // Mostrar si incluye la búsqueda
-        if(name.includes(query) || query === '') {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
+    // CLICK EN LA COMIDA
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const imgSrc = card.getAttribute('data-img');
+        if(imgSrc) {
+          foodImage.src = imgSrc;
+          foodImage.style.display = 'block';
+          foodImage.scrollIntoView({behavior: "smooth"}); // baja la página hasta la imagen
         }
       });
     });
